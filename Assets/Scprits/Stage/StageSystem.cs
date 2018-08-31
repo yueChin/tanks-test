@@ -24,9 +24,9 @@ public class StageSystem : GameSystem {
         mStageHandle.Update();
     }
 
-    public void MaxDistance(List<Tank> tanks1, List<Tank> tanks2)
-    {
-        mStageHandle.MaxDistance(tanks1, tanks2);
-    }
+    //public void MaxDistance(List<Tank> tanks1, List<Tank> tanks2)
+    //{
+    //    mStageHandle.MaxDistance(tanks1, tanks2);
+    //}
 
 }

@@ -52,4 +52,14 @@ public class SceneStateController
             mState.StateUpdate();
         }
     }
+
+    public void StateLateUpdate()
+    {
+        if (mAO != null && mAO.isDone == false) return;
+        if (mIsRunStart == false && mAO != null && mAO.isDone == true) return;
+        if (mState != null)
+        {
+            mState.StateLateUpdate();
+        }
+    }
 }

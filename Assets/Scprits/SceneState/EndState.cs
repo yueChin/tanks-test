@@ -11,17 +11,32 @@ public class EndState:SceneState
 
     public override void StateStart()
     {
-        GameObject.Find("ReadyButton").GetComponent<Button>().onClick.AddListener(OnStartButtonClick);
-        UISystem.instance.Init();
+        //GameObject.Find("ReadyButton").GetComponent<Button>().onClick.AddListener(OnStartButtonClick);
+        UISystem.Instance.Init();
     }
+
     public override void StateEnd()
     {
-        UISystem.instance.Release();
+        UISystem.Instance.Release();
     }
+
     public override void StateUpdate()
     {
-        UISystem.instance.Update();
+        if (UISystem.Instance.WhichScene == WhichScene.DoubleBattle)
+        {
+            mController.SetState(new EnhancedState(mController));
+        }
+        else if (UISystem.Instance.WhichScene == WhichScene.SingleFight)
+        {
+            mController.SetState(new BattleState(mController));
+        }
+        else if (UISystem.Instance.WhichScene == WhichScene.NetLink)
+        {
+            //todo
+        }
+        UISystem.Instance.Update();
     }
+
     private void OnStartButtonClick()
     {
         mController.SetState(new EnhancedState(mController));

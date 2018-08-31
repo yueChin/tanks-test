@@ -30,4 +30,10 @@ public class GameLoop : MonoBehaviour {
         if (controller != null)
             controller.StateUpdate();
     }
+
+    private void LateUpdate()
+    {
+        if (controller != null)
+            controller.StateLateUpdate();
+    }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class PhysicsTool
 {
-
+    [Obsolete]
     /// <summary>
     /// 锥形扫描范围
     /// </summary>
@@ -73,7 +74,7 @@ public static class PhysicsTool
         return null;
     }
 
-
+    [Obsolete]
     public static GameObject ConeScanOneOfHashCode(Vector3 origin, Vector3 direction, float angleDegree, float generatrix, int segments, int hashCode)
     {
         if (segments == 0)
@@ -129,6 +130,36 @@ public static class PhysicsTool
                 }
             }
         }
+        return null;
+    }
+
+    public static GameObject ConeHashCode(Vector3 origin, Vector3 direction, float angleDegree, float generatrix, int segments, int hashCode)
+    {
+        if (segments == 0)
+        {
+            segments = 1;
+            Debug.Log("精度需要大于0");
+        }
+        if (angleDegree > 180)
+        {
+            angleDegree %= 180;
+            Debug.Log("锥形角请在180度以内");
+        }        
+        float varyAngle = angleDegree / (2 * segments); //每个锥形的与法向量的夹角
+        float height = generatrix *Mathf.Cos(varyAngle); ; //圆锥的高s
+        float bilgeRadius = generatrix * Mathf.Sin(varyAngle); ; //底边半径
+        RaycastHit raycastHit;
+        bool hit;
+        hit = Physics.SphereCast(origin,bilgeRadius,direction.normalized, out raycastHit, height);
+        if (hit)
+        { 
+            Vector3 GOposition = raycastHit.transform.position;
+            float IntersectionAngle = Vector3.Angle((GOposition - origin), direction) % varyAngle;            
+            if ( IntersectionAngle < 0.1f)
+            {
+                return raycastHit.transform.gameObject;
+            }
+        }   
         return null;
     }
 }

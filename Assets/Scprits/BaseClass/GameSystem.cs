@@ -9,7 +9,9 @@ public abstract class GameSystem {
     {
         mFacade = GameFacade.Instance;
     }
+
     public virtual void FixedUpdate() { }
     public virtual void Update() { }
+    public virtual void LateUpdate() { }
     public virtual void Release() { }
 }

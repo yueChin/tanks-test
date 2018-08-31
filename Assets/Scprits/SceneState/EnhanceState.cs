@@ -33,8 +33,16 @@ public class EnhancedState : SceneState
         {
             mController.SetState(new EndState(mController));
         }
-
         GameFacade.Instance.Update();
+    }
+
+    public override void StateLateUpdate()
+    {
+        if (GameFacade.Instance.GameOver)
+        {
+            StateUpdate();
+        }
+        GameFacade.Instance.LateUpdate();
     }
 }
 

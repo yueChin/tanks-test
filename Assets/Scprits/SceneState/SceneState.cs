@@ -23,4 +23,5 @@ public class SceneState
     public virtual void StateEnd() { }
     public virtual void StateUpdate() { }
     public virtual void StateFixedUpdate() { }
+    public virtual void StateLateUpdate() { }
 }

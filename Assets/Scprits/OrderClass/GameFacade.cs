@@ -12,16 +12,19 @@ public class GameFacade {
     private TankSystem mTankSystem;
     private BulletSystem mBulletSystem;
     private StageSystem mStageSystem;
+    private CameraSystem mCameraSystem;
 
     public void Init()
     {
         mStageSystem = new StageSystem();
         mTankSystem = new TankSystem();
         mBulletSystem = new BulletSystem();
+        mCameraSystem = new CameraSystem();
         
         mStageSystem.Init();
         mTankSystem.Init();
         mBulletSystem.Init();
+        mCameraSystem.Init();
     }
 
     public void FixedUpdate()
@@ -35,6 +38,11 @@ public class GameFacade {
         mTankSystem.Update();
         mBulletSystem.Update();
         mStageSystem.Update();
+    }
+
+    public void LateUpdate()
+    {
+        mCameraSystem.LateUpdate();
     }
 
     public void Release() {
@@ -84,6 +92,7 @@ public class GameFacade {
 
     public void MaxDistance()
     {
-        mStageSystem.MaxDistance(mTankSystem.LTankOnes,mTankSystem.LTankTwos);
+        //mStageSystem.MaxDistance(mTankSystem.LTankOnes,mTankSystem.LTankTwos);
+        mCameraSystem.MaxDistance(mTankSystem.LTankOnes, mTankSystem.LTankTwos);
     }
 }

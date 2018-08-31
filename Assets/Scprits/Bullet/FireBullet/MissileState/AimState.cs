@@ -45,7 +45,7 @@ public class AimState :MissileState,IMissileState{
     {
         //正面发射射线，扫描目标
         RotateSelf();
-        GameObject gameObject = PhysicsTool.ConeScanOneOfHashCode(GameObject.transform.position, GameObject.transform.forward,90, mRelocateRange * mFireMissile.Size, 25, mAimHashCode);
+        GameObject gameObject = PhysicsTool.ConeHashCode(GameObject.transform.position, GameObject.transform.forward,90, mRelocateRange * mFireMissile.Size, 25, mAimHashCode);
         if (gameObject != null)
         {
             mMissileTargetDirection = (gameObject.transform.position - GameObject.transform.position).normalized; //得到导弹将要朝向的方向
